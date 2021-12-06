@@ -1,0 +1,26 @@
+PODS:
+  - Cosmos (23.0.0)
+  - MBProgressHUD (1.2.0)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
+
+DEPENDENCIES:
+  - Cosmos
+  - MBProgressHUD (~> 1.2)
+  - SDWebImage (~> 5.12)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Cosmos
+    - MBProgressHUD
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+
+PODFILE CHECKSUM: 1b3a07ec3e97aecf753da16c654d5c4a3f44ff3d
+
+COCOAPODS: 1.10.1
