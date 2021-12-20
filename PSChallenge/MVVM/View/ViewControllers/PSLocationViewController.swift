@@ -25,7 +25,7 @@ class PSLocationViewController: UIViewController {
     // MARK: -
     
     private func layoutViewUI() {
-        self.navigationItem.title = "Add Location"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         self.containerView.layer.cornerRadius = 5.0
         self.containerView.layer.masksToBounds = true

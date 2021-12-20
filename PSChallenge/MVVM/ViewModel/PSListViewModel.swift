@@ -51,10 +51,14 @@ class PSListViewModel {
     }
 
     func fetchSearchResults(searchTerm searchString: String = "", location: String) {
+        if searchString.count == 0 {
+            self.processBusinesses([PSBusiness]())
+            return
+        }
         self.isFetching = true
         let langStr = Locale.current.identifier
 
-        self.webService.getSearchResults(url: baseUrlString, parameters: ["term":searchString, "locale":langStr, "radius": 2000, "location": location], { [weak self] (success, businesses, error) in
+        self.webService.getSearchResults(url: baseUrlString, parameters: ["term":searchString, "location": location], { [weak self] (success, businesses, error) in
             self?.isFetching = false
             if let error = error {
                 if error.rawValue != "cancelled" {

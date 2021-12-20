@@ -110,7 +110,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="agR-RV-M2V">
-                                <rect key="frame" x="0.0" y="132" width="414" height="764"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ListTableViewCell" rowHeight="80" id="iWC-xI-bON" customClass="PSListTableViewCell" customModule="PSChallenge" customModuleProvider="target">
@@ -172,21 +172,34 @@
                                     <outlet property="delegate" destination="SO0-JJ-Maj" id="rZn-eP-hb1"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Lp-cN-dUl">
+                                <rect key="frame" x="186.5" y="465" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AGJ-YE-oFQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="agR-RV-M2V" firstAttribute="bottom" secondItem="AGJ-YE-oFQ" secondAttribute="bottom" constant="34" id="05g-Yu-PSH"/>
+                            <constraint firstItem="agR-RV-M2V" firstAttribute="bottom" secondItem="AGJ-YE-oFQ" secondAttribute="bottom" id="05g-Yu-PSH"/>
+                            <constraint firstItem="0Lp-cN-dUl" firstAttribute="centerY" secondItem="AGJ-YE-oFQ" secondAttribute="centerY" id="3f1-40-I08"/>
                             <constraint firstItem="qKV-3c-4eK" firstAttribute="leading" secondItem="AGJ-YE-oFQ" secondAttribute="leading" id="3uU-nI-ZW6"/>
+                            <constraint firstItem="AGJ-YE-oFQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0Lp-cN-dUl" secondAttribute="trailing" constant="20" id="5dZ-lq-If4"/>
+                            <constraint firstItem="AGJ-YE-oFQ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0Lp-cN-dUl" secondAttribute="bottom" constant="20" id="ANj-9Y-S6P"/>
                             <constraint firstItem="agR-RV-M2V" firstAttribute="leading" secondItem="AGJ-YE-oFQ" secondAttribute="leading" id="Aa5-Wg-Yiw"/>
+                            <constraint firstItem="0Lp-cN-dUl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AGJ-YE-oFQ" secondAttribute="leading" constant="20" id="BOF-4p-lhv"/>
+                            <constraint firstItem="0Lp-cN-dUl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AGJ-YE-oFQ" secondAttribute="top" constant="20" id="H9K-ld-vG0"/>
                             <constraint firstItem="AGJ-YE-oFQ" firstAttribute="trailing" secondItem="agR-RV-M2V" secondAttribute="trailing" id="L3r-jM-70m"/>
                             <constraint firstItem="AGJ-YE-oFQ" firstAttribute="trailing" secondItem="qKV-3c-4eK" secondAttribute="trailing" id="P4d-W4-cYd"/>
-                            <constraint firstItem="agR-RV-M2V" firstAttribute="top" secondItem="qKV-3c-4eK" secondAttribute="bottom" constant="-7" id="bKm-m4-wK4"/>
+                            <constraint firstItem="agR-RV-M2V" firstAttribute="top" secondItem="qKV-3c-4eK" secondAttribute="bottom" id="bKm-m4-wK4"/>
                             <constraint firstItem="qKV-3c-4eK" firstAttribute="top" secondItem="AGJ-YE-oFQ" secondAttribute="top" id="hH6-UU-0ew"/>
+                            <constraint firstItem="0Lp-cN-dUl" firstAttribute="centerX" secondItem="AGJ-YE-oFQ" secondAttribute="centerX" id="wZo-LE-pn9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xT4-81-vca"/>
                     <connections>
+                        <outlet property="infoLabel" destination="0Lp-cN-dUl" id="KOv-NT-lfh"/>
                         <outlet property="searchBar" destination="qKV-3c-4eK" id="mt4-fa-t5P"/>
                         <outlet property="tableView" destination="agR-RV-M2V" id="1Ui-xS-J85"/>
                         <outlet property="tableViewBottomConstraint" destination="05g-Yu-PSH" id="wNn-LY-NFu"/>

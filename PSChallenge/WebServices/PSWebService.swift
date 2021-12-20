@@ -81,6 +81,9 @@ class PSWebService: PSWebServiceProtocol {
                             completion(false, nil, PSWebServiceError.customError(message:errorMessage ?? errorResponse.localizedDescription))
                         } else {
                             let businesses = self.parseResponse(data: data)
+                            if let data = String(data: data!, encoding: .utf8) {
+                                print ("Data in response: \(data)")
+                            }
                             completion(true, businesses, nil)
                         }
                     }

@@ -19,7 +19,10 @@ class PSListViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    
+    private var activitySpinner = UIActivityIndicatorView()
     
     lazy var viewModel: PSListViewModel = {
         return PSListViewModel()
@@ -36,7 +39,11 @@ class PSListViewController: UIViewController {
     // MARK: -
     
     private func layoutViewUI() {
-//        self.navigationItem.title = "Searched Location"
+        self.infoLabel.text = "Please start by searching business."
+        
+        self.activitySpinner.color = .systemBlue
+        self.activitySpinner.hidesWhenStopped = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.activitySpinner)
         
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableView.automaticDimension
@@ -53,16 +60,27 @@ class PSListViewController: UIViewController {
 
         self.viewModel.updateLoadingIndicatorClosure = { [weak self] () in
             let isFetching = self?.viewModel.isFetching ?? false
-            if isFetching {
-                self?.showHud(withText: "Fetching Data...", animated: true, withIndicator: true)
-            } else {
-                self?.hideHud(animated: true)
+            DispatchQueue.main.async {
+                if isFetching {
+                    self?.activitySpinner.startAnimating()
+                } else {
+                    self?.activitySpinner.stopAnimating()
+                }
             }
         }
 
         viewModel.reloadTableViewClosure = { [weak self] () in
             self?.viewModel.isFetchedOnce = true
+            
             DispatchQueue.main.async {
+                if let isFetching = self?.viewModel.isFetching, !isFetching {
+                    let trimmedText = self?.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? ""
+                    self?.infoLabel.text = trimmedText.count > 0 ? "Seems your searched business is not on our platform yet. You may want to try searching other business." : "Please start by searching business."
+                    
+                    self?.infoLabel.isHidden = (self?.viewModel.numberOfCells ?? 0 > 0)
+                } else {
+                    self?.infoLabel.isHidden = true
+                }
                 self?.tableView.reloadData()
             }
         }
@@ -139,9 +157,9 @@ extension PSListViewController {
     @objc
     private func hitFetchRequest() {
         let trimmedText = self.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? ""
-        if trimmedText.count >= 2 {
+//        if trimmedText.count >= 2 {
             self.viewModel.fetchSearchResults(searchTerm: trimmedText, location: currentLocation)
-        }
+//        }
     }
     
 }
@@ -172,7 +190,7 @@ extension PSListViewController {
         let duration = keyboardInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
 
         UIView.animate(withDuration: duration) {
-            self.tableViewBottomConstraint.constant = 34
+            self.tableViewBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
     }
